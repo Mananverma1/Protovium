@@ -1,0 +1,149 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   PROTOVIUM — Shared Styles
+   ───────────────────────────────────────────────────────────────────────────── */
+
+html, body { margin: 0; padding: 0; }
+body { overscroll-behavior: none; }
+::-webkit-scrollbar { display: none; }
+
+/* ── Canvas ─────────────────────────────────────────────────────────────────── */
+#hologram-canvas {
+  position: fixed; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+  pointer-events: auto;
+  display: block;
+}
+
+/* ── Layering ───────────────────────────────────────────────────────────────── */
+header, main, footer {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+/* ── Transparent hero (home + work + connect top area) ──────────────────────── */
+/* Text is always on the LEFT — strong left→transparent right gradient          */
+.glass-hero {
+  position: relative;
+  background: transparent;
+}
+.glass-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(250,249,247,0.97) 0%,
+    rgba(250,249,247,0.88) 32%,
+    rgba(250,249,247,0.40) 60%,
+    rgba(250,249,247,0.00) 82%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.glass-hero > * { position: relative; z-index: 1; }
+
+/* Work page: full-width header with text everywhere needs a frosted band        */
+.glass-band {
+  position: relative;
+  background: rgba(250,249,247,0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ── Header glass ───────────────────────────────────────────────────────────── */
+.site-header {
+  position: fixed; top: 0; width: 100%; z-index: 50;
+  background: rgba(250,249,247,0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(196,198,203,0.45);
+}
+
+/* ── Footer glass ───────────────────────────────────────────────────────────── */
+.site-footer {
+  background: rgba(250,249,247,0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(196,198,203,0.35);
+}
+
+/* ── Page transition overlay ────────────────────────────────────────────────── */
+/* Injected by transition.js immediately — starts opaque, fades to 0 on enter  */
+#proto-overlay {
+  position: fixed; inset: 0;
+  background: #fcfbf9;
+  z-index: 99999;
+  pointer-events: none;
+  will-change: opacity;
+  /* NO transition on creation — transition added dynamically by JS              */
+}
+
+/* ── Nav active indicator ───────────────────────────────────────────────────── */
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #74777c;
+  padding: 0.25rem 0;
+  transition: color 200ms;
+  text-decoration: none;
+  position: relative;
+}
+.nav-link:hover { color: #17212a; }
+.nav-link.active {
+  color: #17212a;
+}
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 1px;
+  background: #17212a;
+}
+
+/* ── Status dot pulse ───────────────────────────────────────────────────────── */
+@keyframes proto-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.5); }
+}
+.status-dot { animation: proto-pulse 2.4s ease-in-out infinite; }
+
+/* ── Animated PROTOVIUM hero wordmark ───────────────────────────────────────── */
+.proto-wordmark {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  gap: 0;
+  width: max-content;
+  max-width: 100%;
+  white-space: nowrap;
+  font-size: clamp(0.82rem, 3.2vw, 2.8rem);
+}
+.proto-wordmark-fixed { color: #17212a; }
+.proto-wordmark-prefix:not(:empty) {
+  margin-right: 0.28em;
+}
+.proto-wordmark-typed {
+  color: #216297;
+  text-shadow: 0 0 28px rgba(76, 159, 240, 0.18);
+  white-space: nowrap;
+}
+.typing-caret {
+  display: inline-block;
+  width: 3px;
+  height: 0.78em;
+  margin-left: 0.1em;
+  vertical-align: -0.04em;
+  background: #216297;
+  box-shadow: 0 0 8px rgba(76, 159, 240, 0.45);
+  animation: proto-caret-blink 850ms steps(2, start) infinite;
+}
+@keyframes proto-caret-blink {
+  to { visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .typing-caret { animation: none; }
+}

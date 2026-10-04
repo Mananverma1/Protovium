@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Explore PROTOVIUM projects across applied AI, LLM applications, agentic systems, data intelligence and software."/>
+  <title>PROTOVIUM — Projects</title>
+  <link rel="icon" type="image/png" href="protovium-mark-preview.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#17212a", "secondary": "#216297",
+            "secondary-container": "#8bc3fe", "surface": "#faf9f7",
+            "surface-container": "#efeeec", "surface-container-low": "#f4f3f1",
+            "surface-variant": "#e3e2e0", "on-surface-variant": "#44474b",
+            "outline": "#74777c", "on-primary": "#ffffff"
+          },
+          fontFamily: {
+            "display-lg": ["Space Grotesk"], "headline-sm": ["Space Grotesk"],
+            "body-md": ["Geist"], "label-caps": ["JetBrains Mono"],
+            "code-base": ["JetBrains Mono"], "label-numeric": ["JetBrains Mono"]
+          },
+          fontSize: {
+            "display-lg": ["3.5rem", { lineHeight: "1.1", letterSpacing: "-0.03em", fontWeight: "500" }],
+            "headline-sm": ["1.25rem", { lineHeight: "1.3", letterSpacing: "-0.01em", fontWeight: "500" }],
+            "body-md": ["0.9375rem", { lineHeight: "1.55" }],
+            "label-caps": ["0.6875rem", { lineHeight: "1", letterSpacing: "0.12em", fontWeight: "500" }],
+            "label-numeric": ["0.75rem", { lineHeight: "1", letterSpacing: "0.08em", fontWeight: "500" }]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="site.css?v=cursor-transition-3"/>
+  <style>
+    body.page-work { background: #faf9f7; }
+    .work-main { min-height: 100vh; padding-top: 4rem; }
+    .work-intro {
+      background: linear-gradient(100deg, rgba(250,249,247,.68), rgba(250,249,247,.24) 72%, rgba(250,249,247,.08));
+    }
+    .repository-section { background: rgba(250,249,247,.34); }
+    .repository-card {
+      background: rgba(250,249,247,.70);
+      border: 1px solid rgba(196,198,203,.75);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      min-height: 12rem;
+    }
+    .repository-card:hover { background: rgba(250,249,247,.84); border-color: #216297; }
+    .repository-card:not(:has(p)) { display: none; }
+    @media (max-width: 640px) {
+      .work-intro { background: rgba(250,249,247,.68); }
+      .repository-card { background: rgba(250,249,247,.82); }
+    }
+  </style>
+</head>
+<body class="page-work font-body-md text-primary antialiased min-h-screen flex flex-col">
+  <canvas id="hologram-canvas" aria-hidden="true"></canvas>
+
+  <header class="site-header">
+    <div class="h-16 w-full px-6 lg:px-16 flex items-center justify-between">
+      <a class="flex items-center gap-3 group shrink-0" href="index.html">
+        <img src="protovium-mark-preview.png" alt="PROTOVIUM symbol" class="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105"/>
+        <span class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary leading-none">PROTOVIUM</span>
+      </a>
+      <nav class="flex items-center gap-1" aria-label="Main navigation">
+        <a class="nav-link px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="index.html">Home</a>
+        <a class="nav-link active px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="work.html" aria-current="page">Projects</a>
+        <a class="nav-link px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="connect.html">Connect</a>
+      </nav>
+      <a class="hidden sm:inline-flex items-center gap-2 font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="https://github.com/Mananverma1" target="_blank" rel="noopener noreferrer">
+        GITHUB <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+      </a>
+    </div>
+  </header>
+
+  <main class="work-main w-full flex-1">
+    <section class="work-intro px-6 lg:px-16 py-16 lg:py-24">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap items-center justify-between gap-4 font-label-caps text-label-caps text-outline uppercase">
+          <span>PROTOVIUM / Project Directory</span>
+          <span>Applied AI · Agentic Systems · Open Source</span>
+        </div>
+        <div class="mt-8 max-w-3xl">
+          <h1 class="font-display-lg text-display-lg text-primary uppercase tracking-tight">Projects &amp; Systems</h1>
+          <p class="mt-4 max-w-2xl font-body-md text-body-md text-on-surface-variant">
+            PROTOVIUM explores practical AI/ML, LLM and agentic-system projects shaped around real-world challenges. This directory documents experiments and builds that help us test ideas, solve problems and expand what we know.
+          </p>
+        </div>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <div class="border border-surface-variant bg-surface/80 px-4 py-3">
+            <span class="block font-label-caps text-label-caps text-outline uppercase">Public repositories</span>
+            <span class="mt-2 block font-display-lg text-display-lg text-primary">24</span>
+          </div>
+          <div class="border border-surface-variant bg-surface/80 px-4 py-3">
+            <span class="block font-label-caps text-label-caps text-outline uppercase">Focus areas</span>
+            <span class="mt-3 block font-label-caps text-label-caps text-primary uppercase">AI / ML · LLMs · Agents</span>
+          </div>
+        </div>
+        <a class="mt-6 inline-flex items-center gap-2 font-label-caps text-label-caps text-secondary uppercase hover:text-primary transition-colors" href="https://www.youtube.com/@protovium" target="_blank" rel="noopener noreferrer">
+          <span class="material-symbols-outlined text-[17px]">smart_display</span>
+          <span>Follow PROTOVIUM on YouTube for shared explorations and learnings</span>
+          <span class="material-symbols-outlined text-[15px]">open_in_new</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="repository-section px-6 lg:px-16 py-10 lg:py-14">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-end justify-between gap-4 border-b border-surface-variant pb-4">
+          <div>
+            <p class="font-label-caps text-label-caps text-secondary uppercase">Open-source project directory</p>
+            <h2 class="mt-2 font-headline-sm text-headline-sm text-primary uppercase">6 Featured Projects</h2>
+          </div>
+          <a class="hidden sm:inline-flex items-center gap-2 font-label-caps text-label-caps text-primary hover:text-secondary" href="https://github.com/Mananverma1?tab=repositories" target="_blank" rel="noopener noreferrer">
+            VIEW ALL ON GITHUB <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+          </a>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">AI-Intel-Pipeline</h3><p class="mt-2 text-sm text-on-surface-variant">An AI-powered pipeline that collects live data from research, news, jobs, and GitHub sources. It uses real LLMs to extract, analyze, and organize this data into useful insights.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/AI-Intel-Pipeline" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">VentureLens</h3><p class="mt-2 text-sm text-on-surface-variant">A multi-agent AI startup analyzer built for the "Agents for Humans Hackathon". It uses AI agents to research startups and deliver a score, risks, and actionable insights.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">HTML</span><a class="repository-link" href="https://github.com/Mananverma1/VentureLens" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Synaptic-Memory-BDH-DataForge</h3><p class="mt-2 text-sm text-on-surface-variant">Interactive explainer: a fixed-size Hebbian memory forgets through interference, not just decay — connected to Pathway's BDH, with Titans/DeltaNet as contrasting toggles. DataForge 2026, Pathway Track.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">HTML</span><a class="repository-link" href="https://github.com/Mananverma1/Synaptic-Memory-BDH-DataForge" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Listings-Ledger</h3><p class="mt-2 text-sm text-on-surface-variant">A React + FastAPI + MySQL dashboard that visualizes business listings by city, category, and source, with search and filtering built in.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/Listings-Ledger" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">FinGuardAI</h3><p class="mt-2 text-sm text-on-surface-variant">A production-grade financial intelligence platform built on FastAPI, with five independent AI modules covering credit risk, fraud detection, customer lifecycle, smart collections, and A/B testing.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">HTML</span><a class="repository-link" href="https://github.com/Mananverma1/FinGuardAI" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Page-Pulse</h3><p class="mt-2 text-sm text-on-surface-variant">Page Pulse audits any URL — paste a link and get back HTTP status, response time, title, meta description, heading/alt-text/SEO checks, and word count. Flask backend, simple frontend, handles bad URLs/timeouts gracefully, with pytest coverage on the parsing logic.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/Page-Pulse" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">AIAudioDubber</h3></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/AIAudioDubber" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">SupplyShieldAI</h3></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/SupplyShieldAI" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">VisiPlantAN</h3></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">HTML</span><a class="repository-link" href="https://github.com/Mananverma1/VisiPlantAN" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Health-Insurance-Claim-Dataset-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Health Insurance Claims Dataset</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Health-Insurance-Claim-Dataset-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Sales-of-Honey-in-US-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Sales of Honey in US Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Sales-of-Honey-in-US-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">AirBnb-Case-Study-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">AirBnb Case Study Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/AirBnb-Case-Study-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Sales-Order-Processing-MS-SQL</h3><p class="mt-2 text-sm text-on-surface-variant">A SQL-based sales order management system for ABC Fashion that manages customers, salesmen, and orders using MS SQL Server.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">MS SQL Server</span><a class="repository-link" href="https://github.com/Mananverma1/Sales-Order-Processing-MS-SQL" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Customer-Churn-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Customer Churn Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Customer-Churn-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Coders-of-Bangalore-Data-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Coders of Bangalore</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Coders-of-Bangalore-Data-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Coders-of-Delhi-Data-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Coders of Delhi</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Coders-of-Delhi-Data-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Housing-Price-Prediction</h3><p class="mt-2 text-sm text-on-surface-variant">Housing Price Prediction - Complete ML Pipeline</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Housing-Price-Prediction" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">GitHub Profile README</h3><p class="mt-2 text-sm text-on-surface-variant">Profile repository.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">GitHub</span><a class="repository-link" href="https://github.com/Mananverma1/Mananverma1" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Hyperliquid-Fear-Greed-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">Analyzes how Bitcoin Fear/Greed sentiment relates to trader behavior and performance on Hyperliquid — data cleaning, statistical testing, trader segmentation, a next-day profitability model (Random Forest), behavioral clustering (K-Means), and an interactive Streamlit dashboard.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Hyperliquid-Fear-Greed-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">UCI-Retail-Data-Analysis</h3><p class="mt-2 text-sm text-on-surface-variant">UCI Online Retail Data Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/UCI-Retail-Data-Analysis" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Breast-Cancer-Wisconsin-Dataset</h3><p class="mt-2 text-sm text-on-surface-variant">Breast Cancer Wisconsin Dataset Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Breast-Cancer-Wisconsin-Dataset" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Restaurant-Revenue-Prediction</h3><p class="mt-2 text-sm text-on-surface-variant">Restaurant Revenue Prediction Data Analysis</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Jupyter Notebook</span><a class="repository-link" href="https://github.com/Mananverma1/Restaurant-Revenue-Prediction" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Flappy-Bird-Game</h3><p class="mt-2 text-sm text-on-surface-variant">Flappy Bird Game using Python</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">Python</span><a class="repository-link" href="https://github.com/Mananverma1/Flappy-Bird-Game" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+          <article class="repository-card flex flex-col justify-between p-5">
+            <div><h3 class="font-headline-sm text-headline-sm text-primary">Jomato-Restaurant-Analytics-System-MS-SQL</h3><p class="mt-2 text-sm text-on-surface-variant">A SQL-based restaurant analytics system that extracts insights on ratings, costs, and cuisine types from a Zomato-style food delivery dataset using MS SQL Server.</p></div>
+            <div class="mt-5 flex items-center justify-between gap-3"><span class="font-label-caps text-label-caps text-outline">T-SQL</span><a class="repository-link" href="https://github.com/Mananverma1/Jomato-Restaurant-Analytics-System-MS-SQL" target="_blank" rel="noopener noreferrer">VIEW REPOSITORY ↗</a></div>
+          </article>
+        </div>
+        <p class="mt-8 font-body-md text-body-md text-on-surface-variant">
+          Many more projects are available on
+          <a class="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors" href="https://github.com/Mananverma1?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub ↗</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="w-full px-6 lg:px-16 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <img src="protovium-mark-preview.png" alt="PROTOVIUM symbol" class="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105"/>
+        <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">PROTOVIUM</span>
+      </a>
+      <span class="font-label-caps text-label-caps text-outline tracking-widest" style="font-size:0.6rem">© 2026</span>
+      <div class="flex items-center gap-5">
+        <a href="index.html" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">HOME</a>
+        <a href="https://github.com/Mananverma1" target="_blank" rel="noopener noreferrer" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">GITHUB</a>
+        <a href="https://www.youtube.com/@protovium" target="_blank" rel="noopener noreferrer" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">YOUTUBE</a>
+        <a href="connect.html" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">CONNECT</a>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .repository-link {
+      color: #17212a;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .65rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .repository-link:hover { color: #216297; }
+    @media (max-width: 420px) {
+      .repository-link { font-size: .58rem; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="hologram.js?v=cursor-removed-1"></script>
+  <script src="transition.js?v=hologram-transition-4"></script>
+  <script>
+    document.querySelectorAll('.repository-card:nth-child(n + 7)').forEach(card => card.remove());
+  </script>
+</body>
+</html>

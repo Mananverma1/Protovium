@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>PROTOVIUM — Connect</title>
+  <link rel="icon" type="image/png" href="protovium-mark-preview.png"/>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-bright":"#faf9f7","on-secondary":"#ffffff","on-secondary-container":"#005083",
+            "surface-container":"#efeeec","primary":"#17212a","secondary":"#216297",
+            "secondary-container":"#8bc3fe","secondary-fixed":"#d0e4ff","surface-variant":"#e3e2e0",
+            "tertiary-fixed":"#d6e4f3","secondary-fixed-dim":"#9bcbff","surface-dim":"#dadad8",
+            "inverse-primary":"#bdc8d4","tertiary-container":"#293641","on-tertiary-container":"#919fac",
+            "on-primary":"#ffffff","on-error-container":"#93000a","surface-container-highest":"#e3e2e0",
+            "on-primary-fixed":"#121d26","primary-fixed":"#d9e3f1","on-primary-container":"#949fab",
+            "error":"#ba1a1a","on-surface":"#1a1c1b","outline":"#74777c","on-primary-fixed-variant":"#3e4852",
+            "surface":"#faf9f7","tertiary-fixed-dim":"#bac8d6","surface-container-lowest":"#ffffff",
+            "on-secondary-fixed-variant":"#004a79","background":"#faf9f7","primary-container":"#2c3640",
+            "on-error":"#ffffff","primary-fixed-dim":"#bdc8d4","on-tertiary":"#ffffff",
+            "on-surface-variant":"#44474b","surface-container-high":"#e9e8e6","on-tertiary-fixed-variant":"#3b4854",
+            "error-container":"#ffdad6","on-tertiary-fixed":"#0f1d27","surface-tint":"#555f6a",
+            "on-secondary-fixed":"#001d34","inverse-on-surface":"#f1f1ef","tertiary":"#13212b",
+            "surface-container-low":"#f4f3f1","on-background":"#1a1c1b","inverse-surface":"#2f3130",
+            "outline-variant":"#c4c6cb"
+          },
+          borderRadius:{ DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px" },
+          fontFamily:{
+            "display-lg":["Space Grotesk"],"headline-lg":["Space Grotesk"],"headline-sm":["Space Grotesk"],
+            "body-lg":["Geist"],"body-md":["Geist"],"body-sm":["Geist"],
+            "label-caps":["JetBrains Mono"],"label-numeric":["JetBrains Mono"],"code-base":["JetBrains Mono"]
+          },
+          fontSize:{
+            "display-lg":["3.5rem",{lineHeight:"1.1",letterSpacing:"-0.03em",fontWeight:"500"}],
+            "headline-lg":["2rem",{lineHeight:"1.2",letterSpacing:"-0.02em",fontWeight:"500"}],
+            "headline-sm":["1.25rem",{lineHeight:"1.3",letterSpacing:"-0.01em",fontWeight:"500"}],
+            "body-lg":["1.0625rem",{lineHeight:"1.6",letterSpacing:"-0.005em",fontWeight:"400"}],
+            "body-md":["0.9375rem",{lineHeight:"1.55",letterSpacing:"0",fontWeight:"400"}],
+            "body-sm":["0.8125rem",{lineHeight:"1.5",letterSpacing:"0",fontWeight:"400"}],
+            "label-caps":["0.6875rem",{lineHeight:"1",letterSpacing:"0.12em",fontWeight:"500"}],
+            "label-numeric":["0.75rem",{lineHeight:"1",letterSpacing:"0.08em",fontWeight:"500"}],
+            "code-base":["0.8125rem",{lineHeight:"1.4",letterSpacing:"0",fontWeight:"400"}]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="site.css?v=cursor-transition-3"/>
+  <script>
+    (function(){
+      var o=document.createElement('div');
+      o.id='proto-overlay';
+      o.style.cssText='position:fixed;inset:0;background:#fcfbf9;z-index:99999;pointer-events:none;opacity:1;';
+      document.documentElement.appendChild(o);
+    })();
+  </script>
+  <style>
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #216297 !important;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased selection:bg-secondary-container selection:text-on-secondary-container min-h-screen flex flex-col justify-between">
+
+  <canvas id="hologram-canvas"></canvas>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="h-16 w-full px-6 lg:px-16 flex items-center justify-between">
+      <a class="flex items-center gap-3 group shrink-0" href="index.html">
+        <img src="protovium-mark-preview.png" alt="PROTOVIUM symbol" class="w-9 h-9 object-contain transition-transform duration-300 group-hover:scale-105" />
+        <span class="font-headline-sm text-headline-sm uppercase tracking-wider text-primary leading-none">PROTOVIUM</span>
+      </a>
+      <nav class="flex items-center gap-1">
+        <a class="nav-link px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="index.html">Home</a>
+        <a class="nav-link px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="work.html">Projects</a>
+        <a class="nav-link active px-4 py-2 rounded-sm hover:bg-surface-variant/50" href="connect.html">Connect</a>
+      </nav>
+      <div class="flex items-center gap-4 shrink-0">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1 border border-surface-variant/70">
+          <span class="status-dot w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+          <span class="font-label-numeric text-label-numeric text-on-surface-variant" style="font-size:0.68rem">V.04</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="w-full pt-16 flex-1">
+    <div class="flex flex-col w-full">
+
+      <!-- HERO -->
+      <section class="glass-hero relative min-h-[50vh] flex flex-col justify-center px-6 lg:px-16 py-16 lg:py-24 overflow-hidden">
+        <div class="flex flex-col gap-6 max-w-2xl">
+          <div class="flex items-center gap-3">
+            <span class="font-label-numeric text-label-numeric text-outline uppercase tracking-widest">PROTOVIUM / Collaboration</span>
+            <span class="w-12 h-[1px] bg-surface-variant"></span>
+          </div>
+          <h1 class="font-display-lg text-display-lg font-medium text-primary tracking-tight uppercase leading-none">
+            CONNECT
+          </h1>
+          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+            Connect with PROTOVIUM to explore applied AI, LLM applications, agentic systems and collaborative builds for real-world challenges.
+          </p>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="w-full px-6 lg:px-16 py-16 bg-surface">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+          <!-- Left: contact info -->
+          <div class="lg:col-span-4 flex flex-col gap-8">
+
+            <div class="flex flex-col gap-2">
+              <div class="flex items-center gap-3">
+                <span class="w-6 h-6 flex items-center justify-center font-label-numeric text-label-numeric text-on-primary bg-primary">01</span>
+                <span class="font-label-caps text-label-caps uppercase tracking-widest text-outline">Studio Contact</span>
+              </div>
+              <div class="w-12 h-1 bg-secondary mt-2"></div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              <div class="flex flex-col gap-1.5">
+                <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Location</span>
+                <span class="font-body-md text-body-md text-on-surface">India</span>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">Remote collaboration worldwide</span>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Email</span>
+                <a class="font-body-md text-body-md text-primary hover:text-secondary" href="mailto:mv164466@gmail.com">mv164466@gmail.com</a>
+                <span class="font-body-sm text-body-sm text-on-surface-variant">For project proposals and collaboration inquiries</span>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Availability</span>
+                <div class="flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                  <span class="font-body-md text-body-md text-on-surface">Collaboration inquiries open</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interest areas -->
+            <div class="flex flex-col gap-3 pt-4 border-t border-surface-variant">
+              <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Studio focus</span>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-surface-container font-code-base text-code-base text-on-surface-variant">Agentic AI</span>
+                <span class="px-2.5 py-1 bg-surface-container font-code-base text-code-base text-on-surface-variant">LLM Applications</span>
+                <span class="px-2.5 py-1 bg-surface-container font-code-base text-code-base text-on-surface-variant">Machine Learning</span>
+                <span class="px-2.5 py-1 bg-surface-container font-code-base text-code-base text-on-surface-variant">Data Intelligence</span>
+                <span class="px-2.5 py-1 bg-surface-container font-code-base text-code-base text-on-surface-variant">Hackathon Builds</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: contact form -->
+          <div class="lg:col-span-8">
+            <form class="flex flex-col gap-5" id="contact-form" onsubmit="handleSubmit(event)">
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-label-caps text-label-caps text-outline uppercase tracking-widest" for="name">Full Name</label>
+                  <input
+                    class="bg-surface-container-low border border-surface-variant px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors"
+                    id="name" name="name" placeholder="Your name" required type="text"
+                  />
+                </div>
+                <div class="flex flex-col gap-1.5">
+                  <label class="font-label-caps text-label-caps text-outline uppercase tracking-widest" for="email">Email Address</label>
+                  <input
+                    class="bg-surface-container-low border border-surface-variant px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors"
+                    id="email" name="email" placeholder="you@example.com" required type="email"
+                  />
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label class="font-label-caps text-label-caps text-outline uppercase tracking-widest" for="subject">Subject</label>
+                <input
+                  class="bg-surface-container-low border border-surface-variant px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors"
+                  id="subject" name="subject" placeholder="Project or collaboration topic" type="text"
+                />
+              </div>
+
+              <div class="flex flex-col gap-1.5">
+                <label class="font-label-caps text-label-caps text-outline uppercase tracking-widest" for="message">Message</label>
+                <textarea
+                  class="bg-surface-container-low border border-surface-variant px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline transition-colors resize-none"
+                  id="message" name="message" placeholder="Describe your project, idea, or question..." required rows="6"
+                ></textarea>
+              </div>
+
+              <!-- Type of enquiry -->
+              <div class="flex flex-col gap-2">
+                <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Type of Enquiry</span>
+                <div class="flex flex-wrap gap-2" id="enquiry-btns">
+                  <button type="button" class="enquiry-btn px-3 py-1.5 font-label-caps text-label-caps uppercase bg-primary text-on-primary transition-colors" data-value="collaboration">Collaboration</button>
+                  <button type="button" class="enquiry-btn px-3 py-1.5 font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-value="consulting">Consulting</button>
+                  <button type="button" class="enquiry-btn px-3 py-1.5 font-label-caps text-label-caps uppercase bg-surface-container text-on-surface-variant hover:bg-surface-variant transition-colors" data-value="general">General</button>
+                </div>
+                <input id="enquiry-value" name="enquiry" type="hidden" value="collaboration"/>
+              </div>
+
+              <div class="flex items-center justify-between pt-2">
+                <p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+                  Share the challenge, objectives, and the kind of collaboration you have in mind.
+                </p>
+                <button
+                  class="inline-flex items-center gap-3 px-6 py-3.5 bg-primary text-on-primary font-label-caps text-label-caps uppercase tracking-wider transition-all duration-200 hover:bg-tertiary"
+                  type="submit"
+                >
+                  <span id="submit-label">SEND MESSAGE</span>
+                  <span class="material-symbols-outlined text-[15px]">send</span>
+                </button>
+              </div>
+
+              <!-- Success state -->
+              <div class="hidden p-4 bg-surface-container-low border border-surface-variant" id="form-success">
+                <div class="flex items-center gap-3">
+                  <span class="material-symbols-outlined text-secondary">check_circle</span>
+                  <div>
+                    <p class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Message received</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Your message is ready to send through your email app.</p>
+                  </div>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- BOTTOM CTA STRIP -->
+      <section class="w-full px-6 lg:px-16 py-12 bg-surface-container">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div class="flex flex-col gap-1">
+            <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Other channels</span>
+            <p class="font-body-md text-body-md text-on-surface-variant">Explore the project repositories or connect with Me !</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <a class="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-surface-variant font-label-caps text-label-caps text-primary uppercase hover:bg-surface-variant transition-colors" href="https://github.com/Mananverma1" target="_blank" rel="noreferrer">
+              <span class="material-symbols-outlined text-[16px]">code</span>
+              <span>GITHUB</span>
+            </a>
+            <a class="inline-flex items-center gap-2 px-4 py-2.5 bg-surface border border-surface-variant font-label-caps text-label-caps text-primary uppercase hover:bg-surface-variant transition-colors" href="https://www.linkedin.com/in/manan-v-24b9a0417/" target="_blank" rel="noreferrer">
+              <span class="material-symbols-outlined text-[16px]">person</span>
+              <span>LINKEDIN</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="w-full px-6 lg:px-16 py-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-2.5 group">
+        <img src="protovium-mark-preview.png" alt="PROTOVIUM symbol" class="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-105" />
+        <span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">PROTOVIUM</span>
+      </a>
+      <span class="font-label-caps text-label-caps text-outline tracking-widest" style="font-size:0.6rem">© 2026 — ALL EXPERIMENTS ARCHIVED</span>
+      <div class="flex items-center gap-5">
+        <a href="index.html" class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">HOME</a>
+        <a href="work.html"  class="font-label-caps text-label-caps text-on-surface-variant hover:text-primary transition-colors" style="font-size:0.68rem;letter-spacing:0.1em">PROJECTS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script src="hologram.js?v=cursor-removed-1"></script>
+  <script src="transition.js?v=hologram-transition-4"></script>
+  <script>
+    // Enquiry button toggle
+    const btns = document.querySelectorAll('.enquiry-btn');
+    const hiddenInput = document.getElementById('enquiry-value');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => {
+          b.classList.remove('bg-primary', 'text-on-primary');
+          b.classList.add('bg-surface-container', 'text-on-surface-variant');
+        });
+        btn.classList.add('bg-primary', 'text-on-primary');
+        btn.classList.remove('bg-surface-container', 'text-on-surface-variant');
+        hiddenInput.value = btn.getAttribute('data-value');
+      });
+    });
+
+    function handleSubmit(e) {
+      e.preventDefault();
+
+      const label = document.getElementById('submit-label');
+      const success = document.getElementById('form-success');
+      const form = document.getElementById('contact-form');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const enquiry = document.getElementById('enquiry-value').value;
+
+      if (!name || !email || !message) {
+        return;
+      }
+
+      label.textContent = 'SENDING...';
+
+      const mailtoLink = [
+        'mailto:mv164466@gmail.com',
+        '?subject=' + encodeURIComponent(subject || `Protovium enquiry: ${enquiry}`),
+        '&body=' + encodeURIComponent(message)
+      ].join('');
+
+      setTimeout(() => {
+        form.querySelectorAll('input,textarea').forEach(el => el.disabled = true);
+        form.querySelector('button[type=submit]').style.opacity = '0.5';
+        success.classList.remove('hidden');
+        label.textContent = 'SENT';
+        window.location.href = mailtoLink;
+      }, 900);
+    }
+  </script>
+</body>
+</html>
