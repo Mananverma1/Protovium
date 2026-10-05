@@ -183,7 +183,11 @@
 
           <!-- Right: contact form -->
           <div class="lg:col-span-8">
-            <form class="flex flex-col gap-5" id="contact-form" onsubmit="handleSubmit(event)">
+            <form class="flex flex-col gap-5" id="contact-form">
+              <div aria-hidden="true" style="position:absolute;left:-10000px">
+                <label for="website">Leave this field empty</label>
+                <input id="website" name="website" tabindex="-1" autocomplete="off"/>
+              </div>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div class="flex flex-col gap-1.5">
@@ -247,11 +251,12 @@
                 <div class="flex items-center gap-3">
                   <span class="material-symbols-outlined text-secondary">check_circle</span>
                   <div>
-                    <p class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Message received</p>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Gmail is opening with your message. Review it there and press Send.</p>
+                    <p class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Message sent</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Thanks for reaching out. Your message has been delivered to PROTOVIUM.</p>
                   </div>
                 </div>
               </div>
+              <div class="hidden p-4 border border-error bg-error-container text-on-error-container" id="form-error" role="alert"></div>
 
             </form>
           </div>
@@ -315,37 +320,44 @@
       });
     });
 
-    function handleSubmit(e) {
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', handleSubmit);
+
+    async function handleSubmit(e) {
       e.preventDefault();
 
       const label = document.getElementById('submit-label');
       const success = document.getElementById('form-success');
-      const form = document.getElementById('contact-form');
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const enquiry = document.getElementById('enquiry-value').value;
+      const error = document.getElementById('form-error');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData.entries());
 
-      if (!name || !email || !message) {
-        return;
-      }
-
+      error.classList.add('hidden');
+      submitButton.disabled = true;
       label.textContent = 'SENDING...';
 
-      const gmailComposeUrl = new URL('https://mail.google.com/mail/');
-      gmailComposeUrl.searchParams.set('view', 'cm');
-      gmailComposeUrl.searchParams.set('fs', '1');
-      gmailComposeUrl.searchParams.set('to', 'mv164466@gmail.com');
-      gmailComposeUrl.searchParams.set('su', subject || `Protovium enquiry: ${enquiry}`);
-      gmailComposeUrl.searchParams.set(
-        'body',
-        `Name: ${name}\nEmail: ${email}\nEnquiry type: ${enquiry}\n\n${message}`
-      );
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
 
-      success.classList.remove('hidden');
-      label.textContent = 'OPENING GMAIL...';
-      window.location.assign(gmailComposeUrl.toString());
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error || 'Your message could not be sent. Please try again.');
+        }
+
+        success.classList.remove('hidden');
+        form.querySelectorAll('input,textarea').forEach(el => el.disabled = true);
+        label.textContent = 'SENT';
+      } catch (submitError) {
+        error.textContent = submitError.message || 'Your message could not be sent. Please try again.';
+        error.classList.remove('hidden');
+        submitButton.disabled = false;
+        label.textContent = 'SEND MESSAGE';
+      }
     }
   </script>
 </body>
