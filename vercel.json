@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/projects", "destination": "/work.html" },
+    { "source": "/connect", "destination": "/connect.html" }
+  ],
+  "redirects": [
+    { "source": "/work.html", "destination": "/projects", "statusCode": 301 },
+    { "source": "/connect.html", "destination": "/connect", "statusCode": 301 },
+    { "source": "/index.html", "destination": "/", "statusCode": 301 }
+  ]
+}
