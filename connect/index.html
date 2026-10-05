@@ -155,7 +155,7 @@
 
               <div class="flex flex-col gap-1.5">
                 <span class="font-label-caps text-label-caps text-outline uppercase tracking-widest">Email</span>
-                <a class="font-body-md text-body-md text-primary hover:text-secondary" href="mailto:mv164466@gmail.com">mv164466@gmail.com</a>
+                <a class="font-body-md text-body-md text-primary hover:text-secondary" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=mv164466@gmail.com">mv164466@gmail.com</a>
                 <span class="font-body-sm text-body-sm text-on-surface-variant">For project proposals and collaboration inquiries</span>
               </div>
 
@@ -248,7 +248,7 @@
                   <span class="material-symbols-outlined text-secondary">check_circle</span>
                   <div>
                     <p class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Message received</p>
-                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Your message is ready to send through your email app.</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Gmail is opening with your message. Review it there and press Send.</p>
                   </div>
                 </div>
               </div>
@@ -333,19 +333,19 @@
 
       label.textContent = 'SENDING...';
 
-      const mailtoLink = [
-        'mailto:mv164466@gmail.com',
-        '?subject=' + encodeURIComponent(subject || `Protovium enquiry: ${enquiry}`),
-        '&body=' + encodeURIComponent(message)
-      ].join('');
+      const gmailComposeUrl = new URL('https://mail.google.com/mail/');
+      gmailComposeUrl.searchParams.set('view', 'cm');
+      gmailComposeUrl.searchParams.set('fs', '1');
+      gmailComposeUrl.searchParams.set('to', 'mv164466@gmail.com');
+      gmailComposeUrl.searchParams.set('su', subject || `Protovium enquiry: ${enquiry}`);
+      gmailComposeUrl.searchParams.set(
+        'body',
+        `Name: ${name}\nEmail: ${email}\nEnquiry type: ${enquiry}\n\n${message}`
+      );
 
-      setTimeout(() => {
-        form.querySelectorAll('input,textarea').forEach(el => el.disabled = true);
-        form.querySelector('button[type=submit]').style.opacity = '0.5';
-        success.classList.remove('hidden');
-        label.textContent = 'SENT';
-        window.location.href = mailtoLink;
-      }, 900);
+      success.classList.remove('hidden');
+      label.textContent = 'OPENING GMAIL...';
+      window.location.assign(gmailComposeUrl.toString());
     }
   </script>
 </body>
